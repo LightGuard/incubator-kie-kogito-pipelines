@@ -1,38 +1,41 @@
 ecosystem:
   main_project: kogito
   dependencies:
-  - name: drools
+    - name: drools
   projects:
-  - name: kogito
-    default_main_version: 2.0.0-SNAPSHOT
-    regexs:
-    - kogito.*
-    - incubator-kie-kogito.*
-  - name: kie-docs
-    ignore_release: true
-    regexs:
-    - kie-docs.*
-    - incubator-kie-docs.*
+    - name: kogito
+      default_main_version: 10.2.0-SNAPSHOT
+      regexs:
+        - kogito.*
+        - incubator-kie-kogito.*
+  #- name: kie-docs
+  #  ignore_release: true
+  #  regexs:
+  #  - kie-docs.*
+  #  - incubator-kie-docs.*
 git:
   branches:
-  - name: main
-    main_branch: true
-  - name: 10.0.x
-    seed:
-      branch: seed-kogito-10.0.x
-  - name: 10.1.x
-    seed:
-      branch: seed-kogito-10.1.x
+    - name: main
+      main_branch: true
+    - name: 10.0.x
+      seed:
+        branch: seed-kogito-10.0.x
+    - name: 10.1.x
+      seed:
+        branch: seed-kogito-10.1.x
+    - name: 10.2-testing
+      seed:
+        branch: 10.2-testing
 seed:
   config_file:
     git:
       repository: incubator-kie-kogito-pipelines
       author:
-        name: apache
-        credentials_id: ASF_Cloudbees_Jenkins_ci-builds
+        name: LightGuard
+        credentials_id: SEED_AUTHOR_CREDS_ID
         push:
-          credentials_id: 84811880-2025-45b6-a44c-2f33bef30ad2
-      branch: main
+          credentials_id: SEED_AUTHOR_CREDS_ID
+      branch: 10.2-testing
     path: .ci/jenkins/config/branch.yaml
   jenkinsfile: dsl/seed/jenkinsfiles/Jenkinsfile.seed.branch
 jenkins:
